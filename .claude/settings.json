@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat postcss.config.mjs)",
+      "Bash(cat tailwind.config.*)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(npx --yes playwright --version)",
+      "Bash(cp /tmp/verify.mjs ./verify.mjs)",
+      "Bash(node verify.mjs)",
+      "Read(//tmp/**)",
+      "Read(//c/tmp/**)"
+    ]
+  }
+}
