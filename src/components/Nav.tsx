@@ -10,6 +10,7 @@ const LINKS = [
   { href: "#preorder", label: "Pre-order" },
   { href: "#editorial", label: "Editorial" },
   { href: "#custom", label: "Custom Made" },
+  { href: "#moon", label: "Rising Moon" },
 ];
 
 export default function Nav() {

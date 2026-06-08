@@ -8,6 +8,7 @@ import Moodboard from "@/components/sections/Moodboard";
 import PreOrder from "@/components/sections/PreOrder";
 import Editorial from "@/components/sections/Editorial";
 import CustomMade from "@/components/sections/CustomMade";
+import RisingMoon from "@/components/sections/RisingMoon";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <PreOrder />
         <Editorial />
         <CustomMade />
+        <RisingMoon />
       </main>
       <Footer />
     </>
