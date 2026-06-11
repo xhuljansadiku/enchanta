@@ -11,8 +11,16 @@ export default function Moodboard() {
       id="moodboard"
       className="relative overflow-hidden bg-gradient-to-br from-blossom-50 via-lavender-100 to-blossom-100 py-24"
     >
-      <div className="pointer-events-none absolute top-10 left-10 h-56 w-56 rounded-full bg-blossom-300/30 blur-3xl" />
-      <div className="pointer-events-none absolute right-10 bottom-10 h-64 w-64 rounded-full bg-lavender-300/30 blur-3xl" />
+      <div className="animate-blob pointer-events-none absolute top-10 left-10 h-56 w-56 rounded-full bg-blossom-300/30 blur-3xl" />
+      <div className="animate-blob [animation-delay:-7s] pointer-events-none absolute right-10 bottom-10 h-64 w-64 rounded-full bg-lavender-300/30 blur-3xl" />
+
+      {/* slow moving gradient sheen */}
+      <div className="animate-gradient-flow pointer-events-none absolute inset-0 bg-[length:200%_200%] bg-gradient-to-br from-transparent via-white/30 to-transparent opacity-60" />
+
+      {/* shooting stars */}
+      <span className="animate-shooting-star pointer-events-none absolute top-[8%] left-[5%] h-px w-32 rounded-full bg-gradient-to-r from-white via-white/80 to-transparent" />
+      <span className="animate-shooting-star [animation-delay:2.5s] pointer-events-none absolute top-[35%] left-[40%] h-px w-24 rounded-full bg-gradient-to-r from-white via-white/80 to-transparent" />
+      <span className="animate-shooting-star [animation-delay:5s] pointer-events-none absolute top-[2%] left-[55%] h-px w-20 rounded-full bg-gradient-to-r from-white via-white/80 to-transparent" />
 
       <div
         ref={ref}

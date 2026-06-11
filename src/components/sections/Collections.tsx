@@ -53,13 +53,22 @@ const RELICS: { name: string; price: string; desc: string; icon: string; categor
   },
 ];
 
+// staggered offsets so the cards don't sit in a perfect row
+const OFFSETS = [
+  "lg:-translate-y-6 lg:rotate-[-2deg]",
+  "lg:translate-y-14 lg:rotate-[1.5deg]",
+  "lg:-translate-y-2 lg:rotate-[2.5deg]",
+];
+
 export default function Collections() {
   const [filter, setFilter] = useState<Category>("All Relics");
+  const [showAll, setShowAll] = useState(false);
   const [bannerRef, bannerInView] = useInView();
   const [gridRef, gridInView] = useInView();
 
-  const visible =
+  const filtered =
     filter === "All Relics" ? RELICS : RELICS.filter((r) => r.category === filter);
+  const visible = showAll ? filtered : filtered.slice(0, 3);
 
   return (
     <section id="collections" className="relative">
@@ -70,9 +79,6 @@ export default function Collections() {
         </div>
         <div className="pointer-events-none absolute right-6 bottom-6 text-6xl opacity-40 sm:text-8xl">
           🌸
-        </div>
-        <div className="animate-float pointer-events-none absolute bottom-10 left-1/2 hidden -translate-x-1/2 text-7xl sm:block">
-          🛍️
         </div>
 
         <div
@@ -117,7 +123,10 @@ export default function Collections() {
               <button
                 key={label}
                 type="button"
-                onClick={() => setFilter(label)}
+                onClick={() => {
+                  setFilter(label);
+                  setShowAll(false);
+                }}
                 className={`rounded-full px-5 py-2 text-sm font-semibold tracking-wide transition duration-200 hover:scale-[1.06] ${
                   filter === label
                     ? "bg-white text-plum-700 shadow-md shadow-plum-900/20"
@@ -134,7 +143,7 @@ export default function Collections() {
               <div
                 key={relic.name}
                 style={{ transitionDelay: `${200 + i * 100}ms` }}
-                className={`group/card flex flex-col rounded-[1.75rem] border border-white/10 bg-white/5 p-5 text-left backdrop-blur-md transition-[opacity,transform,box-shadow,border-color,background-color] duration-500 ease-out hover:-translate-y-3 hover:border-white/25 hover:bg-white/10 hover:shadow-[0_20px_56px_rgba(90,48,73,0.4)] ${gridInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                className={`group/card flex flex-col rounded-[1.75rem] border border-white/10 bg-white/5 p-5 text-left backdrop-blur-md transition-[opacity,transform,box-shadow,border-color,background-color] duration-500 ease-out hover:-translate-y-3 hover:border-white/25 hover:bg-white/10 hover:shadow-[0_20px_56px_rgba(90,48,73,0.4)] ${OFFSETS[i % OFFSETS.length]} ${gridInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
               >
                 <ArtPlaceholder
                   gradient="bg-gradient-to-br from-plum-300/70 to-plum-700/70"
@@ -155,6 +164,18 @@ export default function Collections() {
               </div>
             ))}
           </div>
+
+          {filtered.length > 3 && (
+            <div className="mt-16 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowAll((v) => !v)}
+                className="btn-shine rounded-full bg-gradient-to-r from-blossom-500 to-blossom-300 px-8 py-3 text-sm font-bold tracking-wide text-white shadow-lg shadow-plum-900/30 transition-all duration-400 ease-out hover:-translate-y-1 hover:scale-[1.04] hover:shadow-xl hover:shadow-blossom-500/30"
+              >
+                {showAll ? "Show less" : "See more"}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -9,7 +9,9 @@
       "Bash(cp /tmp/verify.mjs ./verify.mjs)",
       "Bash(node verify.mjs)",
       "Read(//tmp/**)",
-      "Read(//c/tmp/**)"
+      "Read(//c/tmp/**)",
+      "Bash(findstr \":3000\")",
+      "Bash(findstr LISTENING)"
     ]
   }
 }

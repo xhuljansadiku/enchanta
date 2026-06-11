@@ -44,6 +44,9 @@
   --animate-hero-scale: heroScale 1s cubic-bezier(.34, 1.56, .64, 1) both;
   --animate-gradient-flow: gradientFlow 16s ease-in-out infinite;
   --animate-twinkle: twinkle 3s ease-in-out infinite;
+  --animate-pulse-glow: pulseGlow 4s ease-in-out infinite;
+  --animate-blob: blobMove 16s ease-in-out infinite;
+  --animate-shooting-star: shootingStar 7s linear infinite;
 }
 
 @keyframes float {
@@ -80,6 +83,24 @@
 @keyframes moonPulse {
   0%, 100% { opacity: 0.55; transform: scale(1); }
   50%       { opacity: 0.9;  transform: scale(1.1); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;  transform: scale(1.06); }
+}
+
+@keyframes blobMove {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -30px) scale(1.12); }
+  66%       { transform: translate(-30px, 25px) scale(0.92); }
+}
+
+@keyframes shootingStar {
+  0%   { transform: translate(0, 0) rotate(35deg) scaleX(0); opacity: 0; }
+  8%   { opacity: 1; transform: translate(0, 0) rotate(35deg) scaleX(1); }
+  28%  { opacity: 0; transform: translate(420px, 280px) rotate(35deg) scaleX(1); }
+  100% { opacity: 0; transform: translate(420px, 280px) rotate(35deg) scaleX(1); }
 }
 
 /* ── shimmer sweep on buttons ── */

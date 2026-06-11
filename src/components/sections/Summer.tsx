@@ -44,7 +44,7 @@ export default function Summer() {
   return (
     <section
       id="summer"
-      className="relative overflow-hidden bg-gradient-to-b from-sky-700 via-sky-500 to-sky-300 pt-12 pb-24 text-white"
+      className="relative overflow-hidden bg-gradient-to-b from-sky-700 via-sky-500 to-sky-300 pt-28 pb-24 text-white sm:pt-36"
     >
       {/* wave top divider */}
       <div className="absolute top-0 left-0 w-full leading-none">
@@ -73,12 +73,12 @@ export default function Summer() {
         <div ref={headingRef} className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <span
-              className={`inline-block transition-[opacity,transform] duration-700 ease-out font-script text-3xl ${headingInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`inline-block transition-[opacity,transform] duration-700 ease-out font-script text-5xl sm:text-6xl ${headingInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
               Mermaid Tales
             </span>
             <h2
-              className={`mt-1 transition-[opacity,transform] duration-700 ease-out delay-100 font-display text-2xl font-semibold tracking-[0.2em] uppercase ${headingInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`mt-2 transition-[opacity,transform] duration-700 ease-out delay-100 font-display text-3xl font-semibold tracking-[0.2em] uppercase sm:text-4xl ${headingInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
               Koleksioni i ri
             </h2>
@@ -100,14 +100,17 @@ export default function Summer() {
           <div
             className={`flex flex-col items-center transition-[opacity,transform] duration-1000 ease-out delay-200 ${headingInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-14"}`}
           >
-            <ArtPlaceholder
-              gradient={`bg-gradient-to-br from-sky-300 via-white/40 to-sky-100 ${
-                active % 2 === 0 ? "" : "from-blossom-200 to-sky-200"
-              }`}
-              icon={SLIDES[active].icon}
-              label={SLIDES[active].label}
-              className="aspect-square w-full max-w-sm rounded-[2rem] border-4 border-white/40 shadow-2xl shadow-sky-900/30 transition-all duration-500"
-            />
+            <div className="relative w-full max-w-sm">
+              <div className="animate-pulse-glow pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-blossom-300/50 via-white/30 to-sky-200/50 blur-3xl" />
+              <ArtPlaceholder
+                gradient={`bg-gradient-to-br from-sky-300 via-white/40 to-sky-100 ${
+                  active % 2 === 0 ? "" : "from-blossom-200 to-sky-200"
+                }`}
+                icon={SLIDES[active].icon}
+                label={SLIDES[active].label}
+                className="relative aspect-square w-full rounded-[2rem] border-4 border-white/40 shadow-2xl shadow-sky-900/30 transition-all duration-500"
+              />
+            </div>
             <div className="mt-6 flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 backdrop-blur-sm">
               {SLIDES.map((slide, i) => (
                 <button
@@ -130,25 +133,32 @@ export default function Summer() {
             <div
               key={product.name}
               style={{ transitionDelay: `${i * 130}ms` }}
-              className={`group/card flex flex-col rounded-[1.75rem] border border-white/25 bg-white/10 p-5 backdrop-blur-md transition-[opacity,transform,box-shadow,border-color,background-color] duration-500 ease-out hover:-translate-y-3 hover:border-white/45 hover:bg-white/18 hover:shadow-[0_20px_60px_rgba(14,165,233,0.25)] ${productsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+              className={`group/card relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/25 bg-white/10 p-5 backdrop-blur-md transition-[opacity,transform,box-shadow,border-color,background-color] duration-500 ease-out hover:-translate-y-3 hover:border-white/45 hover:bg-white/18 hover:shadow-[0_20px_60px_rgba(14,165,233,0.25)] ${productsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             >
-              <ArtPlaceholder
-                gradient={product.gradient}
-                icon={product.icon}
-                className="aspect-square w-full rounded-2xl text-plum-700"
-              />
-              <h3 className="mt-5 font-display text-lg font-semibold">
+              {/* glow that appears on hover */}
+              <div className="pointer-events-none absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-blossom-300/0 via-white/0 to-sky-200/0 opacity-0 blur-2xl transition-opacity duration-500 ease-out group-hover/card:from-blossom-300/30 group-hover/card:via-white/20 group-hover/card:to-sky-200/30 group-hover/card:opacity-100" />
+
+              <div className="relative overflow-hidden rounded-2xl">
+                <ArtPlaceholder
+                  gradient={product.gradient}
+                  icon={product.icon}
+                  className="aspect-square w-full text-plum-700 transition-transform duration-500 ease-out group-hover/card:scale-110"
+                />
+                {/* shimmer sweep across the artwork */}
+                <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 ease-out group-hover/card:translate-x-full" />
+              </div>
+              <h3 className="relative mt-5 font-display text-lg font-semibold transition-colors duration-300 group-hover/card:text-blossom-100">
                 {product.name}
               </h3>
-              <span className="mt-1 inline-block w-fit rounded-md bg-yellow-200/80 px-2 py-0.5 font-display text-sm font-semibold text-plum-700">
+              <span className="relative mt-1 inline-block w-fit rounded-md bg-yellow-200/80 px-2 py-0.5 font-display text-sm font-semibold text-plum-700 transition-transform duration-300 ease-out group-hover/card:scale-105">
                 {product.price}
               </span>
-              <p className="mt-3 text-sm leading-relaxed text-white/75 italic">
+              <p className="relative mt-3 text-sm leading-relaxed text-white/75 italic">
                 {product.desc}
               </p>
               <button
                 type="button"
-                className="btn-shine mt-5 rounded-full bg-sky-700 py-2.5 text-sm font-semibold tracking-wide text-white transition-all duration-400 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-sky-900 hover:shadow-lg hover:shadow-sky-900/40"
+                className="btn-shine relative mt-5 rounded-full bg-sky-700 py-2.5 text-sm font-semibold tracking-wide text-white transition-all duration-400 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-sky-900 hover:shadow-lg hover:shadow-sky-900/40"
               >
                 BUY NOW
               </button>

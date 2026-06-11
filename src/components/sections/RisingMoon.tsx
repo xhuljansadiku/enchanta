@@ -59,10 +59,10 @@ export default function RisingMoon() {
       id="moon"
       className="relative overflow-hidden bg-gradient-to-b from-moon-950 via-moon-900 to-moon-950 py-32 text-white"
     >
-      {/* wave from CustomMade sky-100 */}
+      {/* wave dipping down from the pink CustomMade section into the night sky */}
       <div className="absolute top-0 left-0 w-full leading-none">
         <svg viewBox="0 0 1440 72" preserveAspectRatio="none" className="block h-16 w-full sm:h-20" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,36 C180,72 360,0 540,36 C720,72 900,0 1080,36 C1260,72 1380,18 1440,36 L1440,0 L0,0 Z" fill="#dcedfb" />
+          <path d="M0,36 C180,72 360,0 540,36 C720,72 900,0 1080,36 C1260,72 1380,18 1440,36 L1440,0 L0,0 Z" fill="#06101f" />
         </svg>
       </div>
 
