@@ -181,6 +181,16 @@ export default function RisingMoon() {
           ))}
         </div>
 
+        {/* see more */}
+        <div className="mt-12 flex justify-center">
+          <button
+            type="button"
+            className="btn-shine rounded-full border border-blue-300/25 bg-white/5 px-8 py-3 text-sm font-semibold tracking-wide text-blue-100 backdrop-blur-md transition-all duration-400 ease-out hover:-translate-y-0.5 hover:scale-[1.03] hover:bg-white/10 hover:shadow-lg hover:shadow-blue-900/40"
+          >
+            See More
+          </button>
+        </div>
+
       </div>
 
       {/* wave to Artistry plum-900 */}

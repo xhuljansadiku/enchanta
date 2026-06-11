@@ -1,6 +1,5 @@
 "use client";
 
-import ArtPlaceholder from "@/components/ArtPlaceholder";
 import { useInView } from "@/hooks/useInView";
 
 const VALUES = [
@@ -37,10 +36,10 @@ export default function About() {
 
       <div
         ref={ref}
-        className="relative mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-2 lg:items-center"
+        className="relative mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-12 lg:items-center"
       >
         {/* left column */}
-        <div>
+        <div className="lg:col-span-5">
           <span
             className={`inline-block transition-[opacity,transform] duration-700 ease-out font-script text-2xl text-blossom-100 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
           >
@@ -67,7 +66,7 @@ export default function About() {
             everyday.
           </p>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+          <div className="mt-10 grid gap-5">
             {VALUES.map((value, i) => (
               <div
                 key={value.title}
@@ -86,15 +85,17 @@ export default function About() {
           </div>
         </div>
 
-        {/* right column — image slides from right */}
+        {/* right column — video slides from right */}
         <div
-          className={`transition-[opacity,transform] duration-1000 ease-out delay-300 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}
+          className={`lg:col-span-7 transition-[opacity,transform] duration-1000 ease-out delay-300 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}
         >
-          <ArtPlaceholder
-            gradient="bg-gradient-to-br from-blossom-300 via-lavender-300 to-plum-300"
-            icon="🪡"
-            label="Ada at her hook"
-            className="aspect-[4/5] w-full rounded-[2.5rem] border-4 border-white/20 shadow-2xl shadow-plum-900/40"
+          <video
+            src="/videos/about.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="aspect-[4/5] w-full rounded-[2.5rem] border-4 border-white/20 object-cover object-[60%_20%] shadow-2xl shadow-plum-900/40"
           />
         </div>
       </div>
