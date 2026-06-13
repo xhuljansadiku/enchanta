@@ -47,6 +47,10 @@
   --animate-pulse-glow: pulseGlow 4s ease-in-out infinite;
   --animate-blob: blobMove 16s ease-in-out infinite;
   --animate-shooting-star: shootingStar 7s linear infinite;
+  --animate-breathing-glow: breathingGlow 9s ease-in-out infinite;
+  --animate-letter-pop: letterPop 0.7s cubic-bezier(.34, 1.56, .64, 1) both;
+  --animate-title-glow: textGlowPulse 4s ease-in-out infinite;
+  --animate-spin-glow: spinGlow 9s linear infinite;
 }
 
 @keyframes float {
@@ -103,6 +107,30 @@
   100% { opacity: 0; transform: translate(420px, 280px) rotate(35deg) scaleX(1); }
 }
 
+/* ── slow breathing light, makes the scene feel alive ── */
+@keyframes breathingGlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%      { opacity: 0.65; transform: scale(1.08); }
+}
+
+/* ── magical pop-in for each letter of the title ── */
+@keyframes letterPop {
+  0%   { opacity: 0; transform: translateY(28px) scale(0.5) rotate(-8deg); filter: blur(4px); }
+  60%  { opacity: 1; transform: translateY(-4px) scale(1.08) rotate(2deg); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+/* ── soft glowing pulse behind the title text ── */
+@keyframes textGlowPulse {
+  0%, 100% { text-shadow: 0 0 18px rgba(243, 169, 207, 0.35), 0 0 36px rgba(205, 178, 232, 0.18); }
+  50%      { text-shadow: 0 0 28px rgba(243, 169, 207, 0.55), 0 0 50px rgba(205, 178, 232, 0.35); }
+}
+
+/* ── rotating gradient ring glow ── */
+@keyframes spinGlow {
+  to { transform: rotate(360deg); }
+}
+
 /* ── shimmer sweep on buttons ── */
 .btn-shine {
   position: relative;
@@ -126,6 +154,13 @@
 }
 .btn-shine:hover::after {
   left: 135%;
+}
+
+/* ── magical glow on hover ── */
+.btn-shine:hover {
+  box-shadow:
+    0 8px 30px rgba(230, 115, 173, 0.35),
+    0 0 40px rgba(205, 178, 232, 0.35);
 }
 
 /* ── glow pulse on click ── */
@@ -171,6 +206,41 @@
 .nav-link:hover::after {
   left: 0;
   right: 0;
+}
+
+/* ── arch-shaped frame for the hero showcase ── */
+.arch-frame {
+  border-radius: 50% 50% 12% 12% / 22% 22% 8% 8%;
+}
+
+/* ── rotating gradient glow behind the showcase frame ── */
+.glow-ring {
+  position: relative;
+}
+.glow-ring::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    var(--color-blossom-300),
+    var(--color-lavender-300),
+    var(--color-sky-300),
+    var(--color-blossom-300)
+  );
+  filter: blur(18px);
+  opacity: 0.55;
+  animation: var(--animate-spin-glow);
+}
+
+/* ── tiny drifting sparkles ── */
+.sparkle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
 }
 
 html {
